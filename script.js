@@ -3,6 +3,8 @@ async function fetchDorks() {
     return response.json();
 }
 
+var exclusion = " -public -sample -doc -docs -documentation -template -draft -application -form -support -default";
+
 function toggleCategory(id) {
     var list = document.getElementById(id);
     if (list.style.display === "none" || list.style.display === "") {
@@ -43,7 +45,7 @@ async function updateLinks() {
             div.className = "dork";
             
             let a = document.createElement("a");
-            a.href = "https://www.google.com/search?q=" + encodeURIComponent(dork.replace("${domain}", domain));
+            a.href = "https://www.google.com/search?q=" + encodeURIComponent(dork.replace("${domain}", domain) + exclusion);
             a.target = "_blank";
             a.textContent = dork.replace("${domain}", domain);
             
